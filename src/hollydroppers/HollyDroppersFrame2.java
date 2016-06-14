@@ -6,18 +6,23 @@
 
 package hollydroppers;
 
+import java.awt.Button;
 import java.awt.GraphicsConfiguration;
+import java.awt.Label;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import javax.swing.DefaultCellEditor;
-import javafx.scene.control.TitledPane;
 import javafx.scene.control.Accordion;
+import javafx.scene.control.TitledPane;
+import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import static javax.swing.JTable.*;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
@@ -55,8 +60,17 @@ public class HollyDroppersFrame2 extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        jToggleButton1 = new javax.swing.JToggleButton();
-        jPanel9 = new javax.swing.JPanel();
+        crntYearCombo = new javax.swing.JComboBox();
+        jLabel9 = new javax.swing.JLabel();
+        crntSemCombo = new javax.swing.JComboBox();
+        jLabel10 = new javax.swing.JLabel();
+        crntAddNewBtn = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        crntTable = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        crntTotalCredtiLabel = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -82,12 +96,12 @@ public class HollyDroppersFrame2 extends javax.swing.JFrame {
         dsemcombobox = new javax.swing.JComboBox();
         daddnewbutton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        dtable = new javax.swing.JTable();
         dpassed = new javax.swing.JButton();
         dremove = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         dtotalcredittextfield = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        dtable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -103,62 +117,144 @@ public class HollyDroppersFrame2 extends javax.swing.JFrame {
 
         jLabel8.setBackground(new java.awt.Color(0, 102, 204));
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel8.setText("CSE Depatment : 3rd year 1st semester");
+        jLabel8.setText("CSE Depatment : ");
         jLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jToggleButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jToggleButton1.setText("!");
+        crntYearCombo.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        crntYearCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4" }));
+        crntYearCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crntYearComboActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel9.setText("Year");
+
+        crntSemCombo.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        crntSemCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", " " }));
+        crntSemCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crntSemComboActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel10.setText("Semester");
+
+        crntAddNewBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        crntAddNewBtn.setText("Add New");
+        crntAddNewBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crntAddNewBtnActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Save");
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addContainerGap()
                 .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
-                .addComponent(jToggleButton1)
-                .addGap(88, 88, 88))
+                .addGap(28, 28, 28)
+                .addComponent(crntYearCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel9)
+                .addGap(18, 18, 18)
+                .addComponent(crntSemCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(crntAddNewBtn)
+                .addGap(29, 29, 29))
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addGap(209, 209, 209)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(crntYearCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(crntSemCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10)
+                    .addComponent(crntAddNewBtn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addContainerGap())
         );
 
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
+        crntTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null}
+            },
+            new String [] {
+                "Current Course"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(crntTable);
+
+        jButton1.setText("Remove");
+
+        jLabel11.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel11.setText("Total Credit :");
+
+        crntTotalCredtiLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        crntTotalCredtiLabel.setText("0.0");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3)
                     .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addGap(150, 150, 150)
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(crntTotalCredtiLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(105, 105, 105)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
-                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 397, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(crntTotalCredtiLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20))
         );
 
         jTabbedPane2.addTab("Current Course", jPanel4);
+
+        jPanel3.setBackground(new java.awt.Color(0, 51, 255));
+        jPanel3.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("    Year");
@@ -201,7 +297,7 @@ public class HollyDroppersFrame2 extends javax.swing.JFrame {
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(psemcombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 223, Short.MAX_VALUE)
                 .addComponent(paddnewbutton)
                 .addContainerGap())
         );
@@ -257,21 +353,18 @@ public class HollyDroppersFrame2 extends javax.swing.JFrame {
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cgpatextfield, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(ptotalcredittextfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(64, 64, 64)))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addGap(49, 49, 49)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cgpatextfield, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ptotalcredittextfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(67, Short.MAX_VALUE))
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -305,11 +398,8 @@ public class HollyDroppersFrame2 extends javax.swing.JFrame {
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
+                .addContainerGap(32, Short.MAX_VALUE)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(68, 68, 68))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                         .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
@@ -318,6 +408,9 @@ public class HollyDroppersFrame2 extends javax.swing.JFrame {
                         .addGap(5, 5, 5)
                         .addComponent(premove)
                         .addGap(42, 42, 42))))
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -340,7 +433,7 @@ public class HollyDroppersFrame2 extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -404,6 +497,40 @@ public class HollyDroppersFrame2 extends javax.swing.JFrame {
             .addComponent(dsemcombobox)
         );
 
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 510, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 406, Short.MAX_VALUE)
+        );
+
+        dpassed.setText("Passed");
+        dpassed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dpassedActionPerformed(evt);
+            }
+        });
+
+        dremove.setText("Remove");
+        dremove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dremoveActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("  Total Credits :-:");
+
+        dtotalcredittextfield.setEditable(false);
+        dtotalcredittextfield.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dtotalcredittextfieldActionPerformed(evt);
+            }
+        });
+
         dtable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -434,83 +561,55 @@ public class HollyDroppersFrame2 extends javax.swing.JFrame {
         dtable.setRowHeight(18);
         jScrollPane1.setViewportView(dtable);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(36, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-
-        dpassed.setText("Passed");
-        dpassed.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dpassedActionPerformed(evt);
-            }
-        });
-
-        dremove.setText("Remove");
-        dremove.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dremoveActionPerformed(evt);
-            }
-        });
-
-        jLabel5.setText("  Total Credits :-:");
-
-        dtotalcredittextfield.setEditable(false);
-        dtotalcredittextfield.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dtotalcredittextfieldActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(20, 20, 20)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(dpassed)
-                        .addGap(18, 18, 18)
-                        .addComponent(dremove))
-                    .addComponent(dtotalcredittextfield, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(79, 79, 79))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 503, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                                .addGap(180, 180, 180)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel6Layout.createSequentialGroup()
+                                        .addComponent(dpassed)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(dremove))
+                                    .addComponent(dtotalcredittextfield, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(79, 79, 79))))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(48, 48, 48)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dtotalcredittextfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(dpassed)
                     .addComponent(dremove))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Dropped Course", jPanel6);
@@ -519,9 +618,9 @@ public class HollyDroppersFrame2 extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jTabbedPane2))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 713, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -571,13 +670,6 @@ public class HollyDroppersFrame2 extends javax.swing.JFrame {
        return sql;
 
     }
-    private void dyearcomboboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dyearcomboboxActionPerformed
-        // TODO add your handling code here:
-        dtable.setModel(new Dtablemodel(dsqlgenerator()));
-        dtotalcredittextfield.setText(""+new Dtablemodel().gettotal());
-
-    }//GEN-LAST:event_dyearcomboboxActionPerformed
-
     private void pyearcomboboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pyearcomboboxActionPerformed
         // TODO add your handling code here:
         ptable.setModel(new Ptablemodel(psqlgenerator()));
@@ -585,68 +677,6 @@ public class HollyDroppersFrame2 extends javax.swing.JFrame {
         ptotalcredittextfield.setText(""+new Ptablemodel().gettotal());
         
     }//GEN-LAST:event_pyearcomboboxActionPerformed
-
-    private void dsemcomboboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dsemcomboboxActionPerformed
-        // TODO add your handling code here:
-
-        dtable.setModel(new Dtablemodel(dsqlgenerator()));
-        dtotalcredittextfield.setText(""+new Dtablemodel().gettotal());
-       System.out.println("height of table:"+dtable.getRowHeight()*dtable.getRowCount());
-        System.out.println("height of t   able:"+dtable.getHeight());
-    }//GEN-LAST:event_dsemcomboboxActionPerformed
-
-    private void dpassedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dpassedActionPerformed
-        // TODO add your handling code here:
-         int size=0;
-         Dtablemodel dtm=new Dtablemodel();
-        
-         
-          for(int i=0;i<dtm.checkarray.length;i++){
-              if(dtm.checkarray[i]==1){
-                  size++;
-              }
-
-              
-          }
-          if(size==0){
-              JOptionPane.showMessageDialog(null, "Select First!");
-          }else{
-            String[][] selectedtitle=new String[size][2];
-            int j=0;
-            for(int i=0;i<dtm.checkarray.length;i++){
-              if(dtm.checkarray[i]==1){
-                  selectedtitle[j][0]=(String)dtable.getValueAt(i,2 );
-                  //selectedtitle[j][1]=(String)dtable.getValueAt(i,3 );
-                  selectedtitle[j][1]="0";
-                  //System.out.println("title selected:"+ selectedtitle[j]);
-                  j++;
-              }
-              
-              
-          }
-            addcgpa cgpa=new addcgpa(selectedtitle);
-            cgpa.setVisible(true);
-            cgpa.setResizable(false);
-            cgpa.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-          }
-     
-
-        
-    }//GEN-LAST:event_dpassedActionPerformed
-
-    private void daddnewbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_daddnewbuttonActionPerformed
-        // TODO add your handling code here:
-        AddNewFrame addnewFrame=new AddNewFrame();
-        addnewFrame.setVisible(true);
-        addnewFrame.setResizable(false);
-        addnewFrame.setLocation(850,50);
-
-        addnewFrame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        dtable.setModel(new Dtablemodel(dsqlgenerator()));
-        System.out.println("hello kemon acho tumi ?????????");
-        //try{wait(DISPOSE_ON_CLOSE);}catch(Exception e){}
-        
-    }//GEN-LAST:event_daddnewbuttonActionPerformed
 
     private void paddnewbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paddnewbuttonActionPerformed
         // TODO add your handling code here:
@@ -662,57 +692,57 @@ public class HollyDroppersFrame2 extends javax.swing.JFrame {
         ptotalcredittextfield.setText(""+new Ptablemodel().gettotal());
         cgpatextfield.setText(""+new Ptablemodel().getcgpa());
     }//GEN-LAST:event_psemcomboboxActionPerformed
+    
 
-    private void dremoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dremoveActionPerformed
-        // TODO add your handling code here:
-
-       
-
-           Dtablemodel dtm=new Dtablemodel();
-           connectDB db=new connectDB();
-           String sql=""; 
+    private void setCrntCoursePane(){
+        int year = crntYearCombo.getSelectedIndex() + 1;
+        int sem = crntSemCombo.getSelectedIndex() + 1;
+            
+        String sql="select code,title,credit from  subjecttable where year ='"+year +"'and semester ='"+sem+"';";
+        CrntTableModel crntTableModel = new CrntTableModel(sql);
+        crntTable.setModel(crntTableModel);
+        crntTable.setAutoResizeMode(AUTO_RESIZE_OFF);
+        crntTable.setRowHeight(50);
+        crntTable.getColumnModel().getColumn(0).setPreferredWidth(400);
+        crntTable.getColumnModel().getColumn(1).setPreferredWidth(80);
+        crntTable.getColumnModel().getColumn(2).setPreferredWidth(70);
+        
+        crntTotalCredtiLabel.setText(""+crntTableModel.gettotal());
+        
+        crntTable.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
            
-           boolean deleteflag=false;
-         
-          for(int i=0;i<dtm.checkarray.length;i++){
-              if(dtm.checkarray[i]==1){
-                  sql="delete from dropped_course where code='"+dtable.getValueAt(i, 1)+"';";
-                  System.out.println("value of row:"+dtable.getValueAt(i, 1));
-                  db.deleterow(sql);
-                  deleteflag=true;
-                
-              }
+            @Override
+            public void valueChanged(ListSelectionEvent event) {
+                 //System.out.println("clicked out");
+                // do some actions here, for example
+                // print first column value from selected row
+                System.out.println(crntTable.getValueAt(crntTable.getSelectedRow(), 0).toString());
+            }
 
-              
-          }
-         
-              
-       dtable.setModel(new Dtablemodel(dsqlgenerator()));
-       dtotalcredittextfield.setText(""+new Dtablemodel().gettotal());
-          if(deleteflag){
-              deleteflag=false;
-              JOptionPane.showMessageDialog(null, "Removed.");
-          }else
-              JOptionPane.showMessageDialog(null, "Select First !");
-          
-
-
-          
-          
-    }//GEN-LAST:event_dremoveActionPerformed
-
+        });
+        
+    }
+    //Listener for tabbedpane.
+    
     private void jTabbedPane2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane2StateChanged
         // TODO add your handling code here:
-        ptable.setModel(new Ptablemodel(psqlgenerator()));
-        ptotalcredittextfield.setText(""+new Ptablemodel().gettotal());
-        cgpatextfield.setText(""+new Ptablemodel().getcgpa());
-        dtable.setModel(new Dtablemodel(dsqlgenerator()));
-        dtotalcredittextfield.setText(""+new Dtablemodel().gettotal());
+        if (jTabbedPane2.getSelectedIndex()==0) {
+            setCrntCoursePane();
+            //crntTable.setRow(50);
+        }else if(jTabbedPane2.getSelectedIndex() == 1){
+            ptable.setModel(new Ptablemodel(psqlgenerator()));
+            ptable.setRowHeight(30);
+            ptotalcredittextfield.setText(""+new Ptablemodel().gettotal());
+            cgpatextfield.setText(""+new Ptablemodel().getcgpa());
+        }else{
+            dtable.setModel(new Dtablemodel(dsqlgenerator()));
+            dtable.setRowHeight(30);
+            dtotalcredittextfield.setText(""+new Dtablemodel().gettotal());
+        }
+        
+        
+        
     }//GEN-LAST:event_jTabbedPane2StateChanged
-
-    private void dtotalcredittextfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dtotalcredittextfieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dtotalcredittextfieldActionPerformed
 
     private void premoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_premoveActionPerformed
         // TODO add your handling code here:
@@ -793,6 +823,114 @@ public class HollyDroppersFrame2 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cgpatextfieldActionPerformed
 
+    private void crntAddNewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crntAddNewBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_crntAddNewBtnActionPerformed
+
+    private void crntYearComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crntYearComboActionPerformed
+        // TODO add your handling code here:
+        setCrntCoursePane();
+    }//GEN-LAST:event_crntYearComboActionPerformed
+
+    private void crntSemComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crntSemComboActionPerformed
+        // TODO add your handling code here:
+        setCrntCoursePane();
+    }//GEN-LAST:event_crntSemComboActionPerformed
+
+    private void dtotalcredittextfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dtotalcredittextfieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dtotalcredittextfieldActionPerformed
+
+    private void dremoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dremoveActionPerformed
+        // TODO add your handling code here:
+
+        Dtablemodel dtm=new Dtablemodel();
+        connectDB db=new connectDB();
+        String sql="";
+
+        boolean deleteflag=false;
+
+        for(int i=0;i<dtm.checkarray.length;i++){
+            if(dtm.checkarray[i]==1){
+                sql="delete from dropped_course where code='"+dtable.getValueAt(i, 1)+"';";
+                System.out.println("value of row:"+dtable.getValueAt(i, 1));
+                db.deleterow(sql);
+                deleteflag=true;
+
+            }
+
+        }
+
+        dtable.setModel(new Dtablemodel(dsqlgenerator()));
+        dtotalcredittextfield.setText(""+new Dtablemodel().gettotal());
+        if(deleteflag){
+            deleteflag=false;
+            JOptionPane.showMessageDialog(null, "Removed.");
+        }else
+        JOptionPane.showMessageDialog(null, "Select First !");
+    }//GEN-LAST:event_dremoveActionPerformed
+
+    private void dpassedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dpassedActionPerformed
+        // TODO add your handling code here:
+        int size=0;
+        Dtablemodel dtm=new Dtablemodel();
+
+        for(int i=0;i<dtm.checkarray.length;i++){
+            if(dtm.checkarray[i]==1){
+                size++;
+            }
+
+        }
+        if(size==0){
+            JOptionPane.showMessageDialog(null, "Select First!");
+        }else{
+            String[][] selectedtitle=new String[size][2];
+            int j=0;
+            for(int i=0;i<dtm.checkarray.length;i++){
+                if(dtm.checkarray[i]==1){
+                    selectedtitle[j][0]=(String)dtable.getValueAt(i,2 );
+                    //selectedtitle[j][1]=(String)dtable.getValueAt(i,3 );
+                    selectedtitle[j][1]="0";
+                    //System.out.println("title selected:"+ selectedtitle[j]);
+                    j++;
+                }
+
+            }
+            addcgpa cgpa=new addcgpa(selectedtitle);
+            cgpa.setVisible(true);
+            cgpa.setResizable(false);
+            cgpa.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        }
+    }//GEN-LAST:event_dpassedActionPerformed
+
+    private void daddnewbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_daddnewbuttonActionPerformed
+        // TODO add your handling code here:
+        AddNewFrame addnewFrame=new AddNewFrame();
+        addnewFrame.setVisible(true);
+        addnewFrame.setResizable(false);
+        addnewFrame.setLocation(850,50);
+
+        addnewFrame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        dtable.setModel(new Dtablemodel(dsqlgenerator()));
+        System.out.println("hello kemon acho tumi ?????????");
+        //try{wait(DISPOSE_ON_CLOSE);}catch(Exception e){}
+    }//GEN-LAST:event_daddnewbuttonActionPerformed
+
+    private void dsemcomboboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dsemcomboboxActionPerformed
+        // TODO add your handling code here:
+
+        dtable.setModel(new Dtablemodel(dsqlgenerator()));
+        dtotalcredittextfield.setText(""+new Dtablemodel().gettotal());
+        System.out.println("height of table:"+dtable.getRowHeight()*dtable.getRowCount());
+        System.out.println("height of t   able:"+dtable.getHeight());
+    }//GEN-LAST:event_dsemcomboboxActionPerformed
+
+    private void dyearcomboboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dyearcomboboxActionPerformed
+        // TODO add your handling code here:
+        dtable.setModel(new Dtablemodel(dsqlgenerator()));
+        dtotalcredittextfield.setText(""+new Dtablemodel().gettotal());
+    }//GEN-LAST:event_dyearcomboboxActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -837,6 +975,11 @@ public class HollyDroppersFrame2 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addcgpabtn;
     private javax.swing.JTextField cgpatextfield;
+    private javax.swing.JButton crntAddNewBtn;
+    private javax.swing.JComboBox crntSemCombo;
+    private javax.swing.JTable crntTable;
+    private javax.swing.JLabel crntTotalCredtiLabel;
+    private javax.swing.JComboBox crntYearCombo;
     private javax.swing.JButton daddnewbutton;
     private javax.swing.JButton dpassed;
     private javax.swing.JButton dremove;
@@ -844,7 +987,11 @@ public class HollyDroppersFrame2 extends javax.swing.JFrame {
     private javax.swing.JTable dtable;
     private javax.swing.JTextField dtotalcredittextfield;
     private javax.swing.JComboBox dyearcombobox;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -852,6 +999,7 @@ public class HollyDroppersFrame2 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
@@ -861,11 +1009,10 @@ public class HollyDroppersFrame2 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JButton paddnewbutton;
     private javax.swing.JButton premove;
     private javax.swing.JComboBox psemcombobox;
